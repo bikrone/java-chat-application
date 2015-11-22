@@ -87,6 +87,7 @@
             <constraints/>
             <properties>
               <columns value="10"/>
+              <text value="127.0.0.1"/>
             </properties>
           </component>
         </children>
@@ -112,6 +113,7 @@
             <constraints/>
             <properties>
               <columns value="10"/>
+              <text value="10008"/>
             </properties>
           </component>
         </children>

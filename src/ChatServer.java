@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+import com.sun.tools.javac.util.Convert;
 import jdk.nashorn.api.scripting.JSObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,7 +49,11 @@ public class ChatServer extends Thread
         ServerSocket serverSocket = null;
 
         try {
-            serverSocket = new ServerSocket(10008);
+            int port = 10008;
+            if (args.length > 0) {
+                port = Integer.parseInt(args[0]);
+            }
+            serverSocket = new ServerSocket(port);
             System.out.println ("Connection Socket Created");
             try {
                 while (serverContinue)
