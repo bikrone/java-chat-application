@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="b5856" layout-manager="FlowLayout" hgap="10" vgap="10" flow-align="1">
+      <grid id="b5856" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="1">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -21,9 +21,12 @@
           <component id="bf048" class="javax.swing.JLabel" binding="usernameLbl">
             <constraints/>
             <properties>
-              <text value="Username"/>
+              <text value="Username "/>
             </properties>
           </component>
+          <hspacer id="7034f">
+            <constraints/>
+          </hspacer>
           <component id="127dd" class="javax.swing.JTextField" binding="usernameTxf">
             <constraints/>
             <properties>
@@ -32,7 +35,7 @@
           </component>
         </children>
       </grid>
-      <grid id="3113a" layout-manager="FlowLayout" hgap="10" vgap="10" flow-align="1">
+      <grid id="3113a" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="1">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -43,9 +46,12 @@
           <component id="9d3a9" class="javax.swing.JLabel" binding="passwordLbl">
             <constraints/>
             <properties>
-              <text value="Password"/>
+              <text value="Password  "/>
             </properties>
           </component>
+          <hspacer id="8467a">
+            <constraints/>
+          </hspacer>
           <component id="1d6cb" class="javax.swing.JPasswordField" binding="passwordTxf">
             <constraints/>
             <properties>

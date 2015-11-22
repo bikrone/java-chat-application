@@ -17,7 +17,11 @@ public class NavigationController {
         if (frameStack.size() > 0) {
             JFrame topFrame = frameStack.get(frameStack.size() - 1);
             topFrame.setVisible(false);
+            frame.setLocation(topFrame.getLocation());
+        } else {
+            frame.setLocationRelativeTo(null);
         }
+
         frame.setVisible(true);
         frameStack.add(frame);
     }

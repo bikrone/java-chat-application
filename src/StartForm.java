@@ -17,6 +17,10 @@ public class StartForm extends JFrame {
     private JPanel usernameLyt;
     private JButton loginBtn;
     private JButton signupBtn;
+    private JTextField ipTxf;
+    private JTextField portTxf;
+    private JPanel ipLyt;
+    private JPanel portLyt;
 
     public StartForm() {
         super("Chat App");
