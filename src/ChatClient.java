@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UnknownFormatConversionException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ChatClient extends Thread {
@@ -118,24 +119,17 @@ public class ChatClient extends Thread {
         return (receiver == null);
     }
 
-    public void connect() {
+    public void connect() throws IOException, UnknownHostException{
         String serverHostname = address;
-        try {
-            echoSocket = new Socket(serverHostname, this.port);
 
-            out = new PrintWriter(echoSocket.getOutputStream(), true);
+        echoSocket = new Socket(serverHostname, this.port);
 
-            receiver = new ChatClient(address, port);
-            receiver.in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            receiver.start();
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host: " + serverHostname);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for "
-                    + "the connection to: " + serverHostname);
-            System.exit(1);
-        }
+        out = new PrintWriter(echoSocket.getOutputStream(), true);
+
+        receiver = new ChatClient(address, port);
+        receiver.in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+        receiver.start();
+
     }
 
     public void run() {

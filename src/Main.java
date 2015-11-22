@@ -1,7 +1,9 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +17,8 @@ public class Main {
     public static String username;
 
     public static ChatClient client;
+
+    public static boolean isStarted = false;
 
     public static void addMessage(String userWith, ChatMessage message) {
         if (messagesWith.get(userWith) == null) {
@@ -50,9 +54,10 @@ public class Main {
         return null;
     }
 
-    private static void setupClient() {
-        client = new ChatClient("127.0.0.1", 10008);
+    public static void setupClient(String address, int port) throws IOException, UnknownHostException {
+        client = new ChatClient(address, port);
         client.connect();
+        isStarted = true;
     }
 
     public static String getHtmlMessageFrom(String user) {
@@ -76,7 +81,7 @@ public class Main {
     public static void main(String[] args) {
         messagesWith = new HashMap<>();
         messagesCountFrom = new HashMap<>();
-        setupClient();
+
         StartForm app = new StartForm();
         NavigationController.getInstance().pushFrame(app);
     }

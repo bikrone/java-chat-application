@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class StartForm extends JFrame {
     private JTextField usernameTxf;
@@ -40,8 +41,9 @@ public class StartForm extends JFrame {
         signupBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Add extra event for signup.
-                goToSignup();
+                if (setupClient() == true) {
+                    goToSignup();
+                }
             }
         });
 
@@ -65,11 +67,27 @@ public class StartForm extends JFrame {
         });
     }
 
+    private boolean setupClient() {
+        try {
+            if (Main.isStarted) return true;
+            Main.setupClient(ipTxf.getText(), Integer.parseInt(portTxf.getText()));
+            return true;
+        } catch (UnknownHostException e) {
+            JOptionPane.showMessageDialog(null, "Cannot connect to host", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Cannot connect to host", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Cannot connect to host", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+
     private void loginAction() {
         String username = usernameTxf.getText();
         String password = passwordField1.getText();
 
         try {
+            if (setupClient() == false) return;
             Main.client.signIn(username, password, (obj) -> {
                 if (Main.isSuccess(obj)) {
                     Main.username = username;
